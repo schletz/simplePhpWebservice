@@ -17,7 +17,7 @@ class SensorController extends Controller {
      * Requestbeispiel: ?controller=Sensor&method=getValues&id=2 */    
     public function getValues() {
         $data = $this->getData("SELECT V_Timestamp, V_Value FROM tValues WHERE V_Sensor = ? ORDER BY V_Timestamp", $this->getParams["id"]);
-        return $data;
+        return $data;   // Wichtig, sonst wird nichts ausgegeben!
     }
 
     /*
@@ -30,7 +30,7 @@ class SensorController extends Controller {
             array($this->getParams["id"],$this->postParams["timestamp"],$this->postParams["value"]));
          $data = $this->getData("SELECT * FROM tValues WHERE V_ID = ?", $this->dbConn->lastInsertId());
             
-         return $data;
+         return $data;   // Wichtig, sonst wird nichts ausgegeben!
 
     }
 }
