@@ -1,6 +1,0 @@
-Der Parameter controller wurde nicht angegeben oder ist ungültig.
-Die Methode get liefert keinen Wert zurück.
-Die Methode SensorController::get liefert keinen Wert zurück.
-Die Mthode SensorController::asd existiert nicht.
-Die Methode SensorController::asd existiert nicht.
-Die Klasse SnsorController existiert nicht.
