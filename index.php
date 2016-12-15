@@ -12,7 +12,7 @@ require_once("sensorController.class.php");
 header('Content-type: application/json; charset=utf-8');
   
 try {
-    if (isset($_GET['controller']) && preg_match("/[A-Za-z][A-Za-z0-9]+/",$_GET['controller']))
+    if (isset($_GET['controller']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['controller']))
         $action = $_GET['controller'];
     else
         throw new Exception("Der Parameter controller wurde nicht angegeben oder ist ungültig.");
