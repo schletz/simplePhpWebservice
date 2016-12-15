@@ -14,6 +14,7 @@ class SensorController extends Controller {
     {
         /* Liefert alle übergebenen GET Parameter zum Testen */
         return json_encode($this->getParams);
+        /* ODER */
         /* Liefert alle übergebenen POST Parameter zum Testen */
         return json_encode($this->postParams);        
     }
