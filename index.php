@@ -25,6 +25,9 @@ try {
     }
 
     $ctrl = new $controllerName ();
+    if (!is_subclass_of($ctrl, "Controller")) {
+        throw new Exception("Die Klasse {$controllerName} ist kein Controller.");
+    }
     $ctrl->getParams = $_GET;
     $ctrl->postParams = $_POST;
     
