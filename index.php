@@ -30,11 +30,14 @@ try {
     
     /* Wurde ein Methodenname übergeben? Wenn ja, wird diese Methode aufgerufen. Falls nicht, wird
      * die Methode get() aufgerufen. */
-    if (isset($_GET['method']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['method'])) {
+    if (!isset($_GET['method'])) {
+        $methodName = "get";
+    }
+    else if (preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['method'])) {
         $methodName = $_GET['method'];
     }
     else {
-        $methodName = "get";
+        throw new Exception("Der Parameter method hat einen ungültigen Wert.");
     }
 
     if (!method_exists($ctrl, $methodName)) {
