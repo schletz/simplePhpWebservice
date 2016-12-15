@@ -12,7 +12,7 @@ require_once("sensorController.class.php");
 header('Content-type: application/json; charset=utf-8');
   
 try {
-    if (isset($_GET['controller']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['controller'])) {
+    if (isset($_GET['controller']) && preg_match("/^[A-Za-z][A-Za-z0-9_]+$/",$_GET['controller'])) {
         $controllerName = $_GET['controller']."Controller";
     }
     else {
@@ -36,7 +36,7 @@ try {
     if (!isset($_GET['method'])) {
         $methodName = "get";
     }
-    else if (preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['method'])) {
+    else if (preg_match("/^[A-Za-z][A-Za-z0-9_]+$/",$_GET['method'])) {
         $methodName = $_GET['method'];
     }
     else {
