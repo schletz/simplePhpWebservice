@@ -8,12 +8,16 @@ require_once("controller.class.php");
  * id in $getParams.
  */
 class SensorController extends Controller {    
+    /* Wird der Controller ohne Methodennamen aufgerufen, geben wir alle Sensor-IDs zurück, die in 
+     * der Datenbank sind. 
+     */
     public function get()
     {
-        return json_encode($this->getParams);
+        $data = $this->getData("SELECT DISTINCT V_Sensor FROM tValues");
+        return $data;   // Wichtig, sonst wird nichts ausgegeben!
     }
     
-    /* Liefert alle Daten des Sensors
+    /* Liefert alle Daten des Sensors, der mit dem GET Parameter id übergeben wurde.
      * Requestbeispiel: ?controller=Sensor&method=getValues&id=2 */    
     public function getValues() {
         $data = $this->getData("SELECT V_Timestamp, V_Value FROM tValues WHERE V_Sensor = ? ORDER BY V_Timestamp", $this->getParams["id"]);

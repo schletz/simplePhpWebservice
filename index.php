@@ -12,14 +12,18 @@ require_once("sensorController.class.php");
 header('Content-type: application/json; charset=utf-8');
   
 try {
-    if (isset($_GET['controller']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['controller']))
-        $action = $_GET['controller'];
-    else
+    if (isset($_GET['controller']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['controller'])) {
+        $controllerName = $_GET['controller']."Controller";
+    }
+    else {
         throw new Exception("Der Parameter controller wurde nicht angegeben oder ist ungültig.");
-
+    }
     /* Instanziert den Controller mit folgendem Namen: {controller}Controller, also z. B. 
      * SchuelerController, wenn controller=Schueler ist. */
-    $controllerName = $action."Controller";
+    if (!class_exists($controllerName)) {
+        throw new Exception("Die Klasse {$controllerName} existiert nicht.");
+    }
+
     $ctrl = new $controllerName ();
     $ctrl->getParams = $_GET;
     $ctrl->postParams = $_POST;
@@ -32,8 +36,17 @@ try {
     else {
         $methodName = "get";
     }
+
+    if (!method_exists($ctrl, $methodName)) {
+        throw new Exception("Die Methode {$controllerName}::{$methodName} existiert nicht.");
+    }
     
-    echo $ctrl->$methodName();
+    /* Methode aufrufen und die JSON Ausgabe 1:1 ausgeben */
+    $data = $ctrl->$methodName();
+    if ($data === null) {
+        throw new Exception("Die Methode {$controllerName}::{$methodName} liefert keinen Wert zurück.");
+    }
+    echo $data;
 }
 
 catch (Exception $err) {
