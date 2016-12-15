@@ -70,7 +70,7 @@ abstract class Controller {
             throw new Exception("Datenbankfehler bei der Abfrage: {$err[2]}");
         }
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return json_encode($rows);
+        return json_encode($rows, JSON_UNESCAPED_UNICODE);
     }
 }
 
