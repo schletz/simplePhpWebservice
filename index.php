@@ -26,7 +26,7 @@ try {
     
     /* Wurde ein Methodenname übergeben? Wenn ja, wird diese Methode aufgerufen. Falls nicht, wird
      * die Methode get() aufgerufen. */
-    if (isset($_GET['method']) && preg_match("/[A-Za-z][A-Za-z0-9]+/",$_GET['method'])) {
+    if (isset($_GET['method']) && preg_match("/[A-Za-z][A-Za-z0-9_]+/",$_GET['method'])) {
         $methodName = $_GET['method'];
     }
     else {
