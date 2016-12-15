@@ -2,9 +2,9 @@
 require_once("controller.class.php");
 
 /*
- * Musterimplementierung einer Controllerklasse. Diese Klasse reagiert auf Requests der  
+ * Musterimplementierung einer Controllerklasse. Diese Klasse reagiert auf Requests der Form 
  * ?controller=Sensor: dies ruft die Methode get auf
- * ?controller=Sensor&method=getValues&id=2: dies ruft getValues auf und schreibt die übergebene
+ * ?controller=Sensor&method=getValues&id=2: dies ruft getValues auf und schreibt die Ã¼bergebene
  * id in $getParams.
  */
 class SensorController extends Controller {    
@@ -21,7 +21,7 @@ class SensorController extends Controller {
     }
 
     /*
-     * Trägt die Daten eines Sensors ein. Beispiel für den Request:
+     * TrÃ¤gt die Daten eines Sensors ein. Beispiel fÃ¼r den Request:
      * GET Request: ?controller=Sensor&method=setValues&id=2
      * POST Daten: timestamp, value */
     public function setValues() 
